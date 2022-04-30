@@ -2,7 +2,7 @@
 title: Hackthebox Writeup Shibboleth
 date: 2022-02-24 20:25:45 pm
 categories: [HTB, Writeups]
-tags: [HTB, Linux, Medium, UDP, Sabbix, CVE-2013-4786, msfvenom, RDBMS, MariaDB, CVE-2021-27928]
+tags: [HTB, Linux, Medium, UDP, Sabbix, CVE-2013-4786, msfvenom, RDBMS, MariaDB, CVE-2021-27928, Python Scripting]
 
 img_path: /assets/img/htb/writeups/shibboleth/
 ---
