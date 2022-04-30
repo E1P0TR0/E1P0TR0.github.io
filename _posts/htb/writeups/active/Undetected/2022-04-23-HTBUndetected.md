@@ -374,7 +374,7 @@ done < paths
 
 rm paths
 ```
-> Puedes encontrar el script en mi repositorio: [https://github.com/E1P0TR0/](://github.com/E1P0TR0/CVE-Machines_htb/tree/main/Auto-tools_Undetected/fileSearchApache)
+> Puedes encontrar el script en mi repositorio: [https://github.com/E1P0TR0/](https://github.com/E1P0TR0/CVE-Machines_htb/tree/main/Auto-tools_Undetected/fileSearchApache)
 {: .prompt-info}
 
 Al ejecutarlo encontramos lo siguiente:
