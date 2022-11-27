@@ -347,7 +347,7 @@ Buscamos que usuarios existen, intentamos ver la **flag** pero necesitamos ser e
 
 * * *
 
-Como el usuario _ipmi\-svc_ intentamos listar **binarios con permisos SUID** `find \-perm 4000 2>/dev/null` y **binarios que podamos ejecutar como root** `sudo -l`, pero no encontramos nada interesante
+Como el usuario _ipmi\-svc_ intentamos listar **binarios con permisos SUID** `find \-perm -4000 2>/dev/null` y **binarios que podamos ejecutar como root** `sudo -l`, pero no encontramos nada interesante
 
 Sabemos que tenemos un agente `Zabbix`, así que intentamos buscar archivos de configuración de podemos leer y conseguimos unas credenciales de una base de dat
 os:  
