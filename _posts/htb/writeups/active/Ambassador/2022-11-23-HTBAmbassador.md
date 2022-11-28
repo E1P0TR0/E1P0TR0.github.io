@@ -1,10 +1,6 @@
 ---
 title: Hackthebox Writeup Ambassador
-<<<<<<< HEAD
-date: 2022-11-23 15:40:18 pm
-=======
 date: 2022-11-23 15:45:18 pm
->>>>>>> 46f76497bb6c62d7d04c75be79963972c688296f
 categories: [HTB, Writeups]
 tags: [HTB, Linux, Medium, cve-2021-43798, Directory Path Traversal, Leakage Information, Git, MySQL, SQLite, Pyton Scripting]
 
