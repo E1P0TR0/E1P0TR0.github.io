@@ -1,8 +1,7 @@
 ---
-title: About
+title: About me
 icon: fas fa-info-circle
 order: 4
 ---
 
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }
+> Very curious self-taught cybersecurity student who likes to deepen the concepts he learns every day, help others with any questions and code a lot of python 🐍 and bash 🐧. As the first objective of the year we are going for the eJPTv2...
