@@ -2,7 +2,7 @@
 title: Cerberus Notes
 date: 2023-08-14 12:00:00 pm
 categories: [HTB]
-tags: [HTB, Windows, Hard, CVE-2022-24715, CVE-2022-24716]
+tags: [HTB, Windows, Hard, CVE-2022-24715, CVE-2022-24716, Python Scripting, Bash Scripting]
 
 img_path: /assets/img/htb/writeups/cerberus
 ---

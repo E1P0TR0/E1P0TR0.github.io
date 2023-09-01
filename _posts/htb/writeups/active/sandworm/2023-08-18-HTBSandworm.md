@@ -2,7 +2,7 @@
 title: Sandworm Notes
 date: 2023-08-18 12:00:00 pm
 categories: [HTB]
-tags: [HTB, Linux, Medium, SSTI, CVE-2022-31214]
+tags: [HTB, Linux, Medium, SSTI, CVE-2022-31214, Bash Scripting]
 
 img_path: /assets/img/htb/writeups/sandworm
 ---

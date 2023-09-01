@@ -2,7 +2,7 @@
 title: Pilgrimage Notes
 date: 2023-08-10 12:00:00 pm
 categories: [HTB]
-tags: [HTB, Linux, Easy, CVE-2022-44268, CVE-2022-4510]
+tags: [HTB, Linux, Easy, CVE-2022-44268, CVE-2022-4510, Python Scripting]
 
 img_path: /assets/img/htb/writeups/pilgrimage
 ---
