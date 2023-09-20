@@ -2,7 +2,7 @@
 title: Jupiter Report
 date: 2023-09-09 12:00:00 pm
 categories: [HTB]
-tags: [HTB, Linux, Medium, PostgreSQL]
+tags: [HTB, Linux, Medium, PostgreSQL, Python Scripting]
 
 img_path: /assets/img/htb/writeups/jupiter
 ---

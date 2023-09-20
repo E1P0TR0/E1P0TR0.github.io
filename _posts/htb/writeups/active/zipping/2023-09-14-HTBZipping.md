@@ -2,7 +2,7 @@
 title: Zipping Report
 date: 2023-09-14 12:00:00 pm
 categories: [HTB]
-tags: [HTB, Linux, Medium, SQLI, RCE, LFI]
+tags: [HTB, Linux, Medium, SQLI, RCE, LFI, Bash Scripting, Python Scripting]
 
 img_path: /assets/img/htb/writeups/zipping
 ---
