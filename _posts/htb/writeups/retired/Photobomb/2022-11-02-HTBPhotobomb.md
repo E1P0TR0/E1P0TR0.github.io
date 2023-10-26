@@ -2,7 +2,7 @@
 title: Hackthebox Writeup Photobomb
 date: 2022-11-02 16:55:16 pm
 categories: [HTB, Writeups]
-tags: [HTB, Linux, Easy, Information Leakage, Command Inyection, Path Hijacking, Python Scripting]
+tags: [HTB, Linux, Easy, Information Leakage, Command Injection, Path Hijacking, Python Scripting]
 
 img_path: /assets/img/htb/writeups/photobomb
 ---
